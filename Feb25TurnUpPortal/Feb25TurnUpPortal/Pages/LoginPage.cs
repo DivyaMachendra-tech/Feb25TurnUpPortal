@@ -8,24 +8,31 @@ using OpenQA.Selenium;
 namespace Feb25TurnUpPortal.Pages
 {
     public class LoginPage
+
     {
-        public void LoginActions(IWebDriver driver)
+        private readonly String url = "http://horse.industryconnect.io/";
+        private readonly By userNameTextBoxLocator = By.Id("UserName");
+        IWebElement usernameTextBox;
+        private readonly By passwordTextBoxLocator = By.Id("Password");
+        IWebElement pwdTextBox;
+        private readonly By loginButtonLoactor = By.XPath("//input[@value='Log in']");
+        public void LoginActions(IWebDriver driver,String username,String pwd)
         {
             //Launch TurnUPportal
-            driver.Navigate().GoToUrl("http://horse.industryconnect.io/");
+            driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
             //Identify UserName TextBox and enter valid username
-            IWebElement usernameTextBox = driver.FindElement(By.Id("UserName"));
-            usernameTextBox.SendKeys("hari");
+            usernameTextBox = driver.FindElement(userNameTextBoxLocator);
+            usernameTextBox.SendKeys(username);
 
             //Identify Password TextBox and enter valid Password
-            IWebElement pwdTextBox = driver.FindElement(By.Id("Password"));
-            pwdTextBox.SendKeys("123123");
+            pwdTextBox = driver.FindElement(passwordTextBoxLocator);
+            pwdTextBox.SendKeys(pwd);
 
 
             //Identify LoginButton and click on it
-            IWebElement loginButton = driver.FindElement(By.XPath("//input[@value='Log in']"));
+            IWebElement loginButton = driver.FindElement(loginButtonLoactor);
             loginButton.Click();
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Feb25TurnUpPortal.Utilities;
 using OpenQA.Selenium;
 
 namespace Feb25TurnUpPortal.Pages
@@ -20,6 +21,8 @@ namespace Feb25TurnUpPortal.Pages
             //Navigate to time and material page
             IWebElement timeAndMaterialOption = driver.FindElement(By.XPath("//a[text()='Time & Materials']"));
             timeAndMaterialOption.Click();
+
+            
 
 
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Feb25TurnUpPortal.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Feb25TurnUpPortal.Pages
@@ -51,21 +52,27 @@ namespace Feb25TurnUpPortal.Pages
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (newCode.Text == "TA Programme")
-            {
-                Console.WriteLine("Time record created successfully!");
-            }
-            else
-            {
-                Console.WriteLine("New time recorded has not been created!");
+            Assert.That(newCode.Text == "TA Programme", "New time record has not been created");
 
-            }
+            //if (newCode.Text == "TA Programme")
+            //{
+            //    Assert.Pass("Time record created successfully!");
+            //}
+            //else
+            //{
+            //    Assert.Fail("New time recorded has not been created!");
+
+            //}
 
             Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]", 3);
 
         }
         public void EditTimeRecord(IWebDriver driver)
         {
+            //Go to last page
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//span[text()='Go to the last page']"));
+            goToLastPageButton.Click();
+
 
             //Click on the Edit button
             IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
@@ -112,12 +119,12 @@ namespace Feb25TurnUpPortal.Pages
 
             if (checkDelete.Text == "40")
             {
-                Console.WriteLine("Record is not deleted");
+                Assert.Fail("Record is not deleted");
 
             }
             else
             {
-                Console.WriteLine("Record is deleted successfully");
+                Assert.Pass("Record is deleted successfully");
             }
 
         }
